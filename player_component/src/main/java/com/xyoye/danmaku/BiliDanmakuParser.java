@@ -103,7 +103,7 @@ public class BiliDanmakuParser extends BaseDanmakuParser {
         public void startElement(String uri, String localName, String qName, Attributes attributes) {
             String tagName = localName.length() != 0 ? localName : qName;
             tagName = tagName.toLowerCase(Locale.getDefault()).trim();
-            if (tagName.equals("d")) {
+            if ("d".equals(tagName)) {
                 // <d p="23.826000213623,1,25,16777215,1422201084,0,057075e9,757076900">我从未见过如此厚颜无耻之猴</d>
                 // 0:时间(弹幕出现时间)
                 // 1:类型(1从右至左滚动弹幕|6从左至右滚动弹幕|5顶端固定弹幕|4底端固定弹幕|7高级弹幕|8脚本弹幕)
@@ -138,7 +138,7 @@ public class BiliDanmakuParser extends BaseDanmakuParser {
             if (item != null && item.text != null) {
                 if (item.duration != null) {
                     String tagName = localName.length() != 0 ? localName : qName;
-                    if (tagName.equalsIgnoreCase("d")) {
+                    if ("d".equalsIgnoreCase(tagName)) {
                         item.setTimer(mTimer);
                         item.flags = mContext.mGlobalFlagValues;
                         Object lock = result.obtainSynchronizer();

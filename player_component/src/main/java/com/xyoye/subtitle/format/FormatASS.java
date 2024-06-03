@@ -101,9 +101,9 @@ public class FormatASS implements TimedTextFileFormat {
                             } else if (line.startsWith("Script Type:")) {
                                 String[] version = line.split(":");
                                 if (version.length > 1) {
-                                    if (version[1].trim().equalsIgnoreCase("v4.00+"))
+                                    if ("v4.00+".equalsIgnoreCase(version[1].trim()))
                                         isASS = true;
-                                    else if (!version[1].trim().equalsIgnoreCase("v4.00"))
+                                    else if (!"v4.00".equalsIgnoreCase(version[1].trim()))
                                         tto.warnings += "Script version is older than 4.00, it may produce parsing errors.";
                                 }
 
@@ -162,7 +162,7 @@ public class FormatASS implements TimedTextFileFormat {
                             line = br.readLine().trim();
                         }
 
-                    } else if (line.trim().equalsIgnoreCase("[Events]")) {
+                    } else if ("[Events]".equalsIgnoreCase(line.trim())) {
                         //its the events specification section
                         lineCounter++;
                         line = br.readLine().trim();
@@ -206,7 +206,7 @@ public class FormatASS implements TimedTextFileFormat {
                             line = br.readLine().trim();
                         }
 
-                    } else if (line.trim().equalsIgnoreCase("[Fonts]") || line.trim().equalsIgnoreCase("[Graphics]")) {
+                    } else if ("[Fonts]".equalsIgnoreCase(line.trim()) || "[Graphics]".equalsIgnoreCase(line.trim())) {
                         //its the custom fonts or embedded graphics section
                         //these are not supported
                         tto.warnings += "The section " + line.trim() + " is not supported for conversion, all information there will be lost.\n\n";
@@ -385,16 +385,16 @@ public class FormatASS implements TimedTextFileFormat {
             for (int i = 0; i < styleFormat.length; i++) {
                 String trimmedStyleFormat = styleFormat[i].trim();
                 //we go through every format parameter and save the interesting values
-                if (trimmedStyleFormat.equalsIgnoreCase("Name")) {
+                if ("Name".equalsIgnoreCase(trimmedStyleFormat)) {
                     //we save the name
                     newStyle.iD = line[i].trim();
-                } else if (trimmedStyleFormat.equalsIgnoreCase("Fontname")) {
+                } else if ("Fontname".equalsIgnoreCase(trimmedStyleFormat)) {
                     //we save the font
                     newStyle.font = line[i].trim();
-                } else if (trimmedStyleFormat.equalsIgnoreCase("Fontsize")) {
+                } else if ("Fontsize".equalsIgnoreCase(trimmedStyleFormat)) {
                     //we save the size
                     newStyle.fontSize = line[i].trim();
-                } else if (trimmedStyleFormat.equalsIgnoreCase("PrimaryColour")) {
+                } else if ("PrimaryColour".equalsIgnoreCase(trimmedStyleFormat)) {
                     //we save the color
                     String color = line[i].trim();
                     if (isASS) {
@@ -406,7 +406,7 @@ public class FormatASS implements TimedTextFileFormat {
                             newStyle.color = Style.getRGBValue("&HBBGGRR", color);
                         else newStyle.color = Style.getRGBValue("decimalCodedBBGGRR", color);
                     }
-                } else if (trimmedStyleFormat.equalsIgnoreCase("BackColour")) {
+                } else if ("BackColour".equalsIgnoreCase(trimmedStyleFormat)) {
                     //we save the background color
                     String color = line[i].trim();
                     if (isASS) {
@@ -420,16 +420,16 @@ public class FormatASS implements TimedTextFileFormat {
                         else
                             newStyle.backgroundColor = Style.getRGBValue("decimalCodedBBGGRR", color);
                     }
-                } else if (trimmedStyleFormat.equalsIgnoreCase("Bold")) {
+                } else if ("Bold".equalsIgnoreCase(trimmedStyleFormat)) {
                     //we save if bold
                     newStyle.bold = Boolean.parseBoolean(line[i].trim());
-                } else if (trimmedStyleFormat.equalsIgnoreCase("Italic")) {
+                } else if ("Italic".equalsIgnoreCase(trimmedStyleFormat)) {
                     //we save if italic
                     newStyle.italic = Boolean.parseBoolean(line[i].trim());
-                } else if (trimmedStyleFormat.equalsIgnoreCase("Underline")) {
+                } else if ("Underline".equalsIgnoreCase(trimmedStyleFormat)) {
                     //we save if underlined
                     newStyle.underline = Boolean.parseBoolean(line[i].trim());
-                } else if (trimmedStyleFormat.equalsIgnoreCase("Alignment")) {
+                } else if ("Alignment".equalsIgnoreCase(trimmedStyleFormat)) {
                     //we save the alignment
                     int placement = Integer.parseInt(line[i].trim());
                     if (isASS) {
@@ -521,20 +521,20 @@ public class FormatASS implements TimedTextFileFormat {
         for (int i = 0; i < maxLength; i++) {
             String trimmedDialogueFormat = dialogueFormat[i].trim();
             //we go through every format parameter and save the interesting values
-            if (trimmedDialogueFormat.equalsIgnoreCase("Style")) {
+            if ("Style".equalsIgnoreCase(trimmedDialogueFormat)) {
                 //we save the style
                 Style s = tto.styling.get(line[i].trim());
                 if (s != null)
                     newCaption.style = s;
                 else
                     tto.warnings += "undefined style: " + line[i].trim() + "\n\n";
-            } else if (trimmedDialogueFormat.equalsIgnoreCase("Start")) {
+            } else if ("Start".equalsIgnoreCase(trimmedDialogueFormat)) {
                 //we save the starting time
                 newCaption.start = new Time("h:mm:ss.cs", line[i].trim());
-            } else if (trimmedDialogueFormat.equalsIgnoreCase("End")) {
+            } else if ("End".equalsIgnoreCase(trimmedDialogueFormat)) {
                 //we save the starting time
                 newCaption.end = new Time("h:mm:ss.cs", line[i].trim());
-            } else if (trimmedDialogueFormat.equalsIgnoreCase("Text")) {
+            } else if ("Text".equalsIgnoreCase(trimmedDialogueFormat)) {
                 //we save the text
                 String captionText = line[i];
                 newCaption.rawContent = captionText;

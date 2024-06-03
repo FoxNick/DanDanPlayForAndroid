@@ -9,7 +9,7 @@ public class Time {
 	 * @param value  string in the correct format
 	 */
 	public Time(String format, String value){
-		if (format.equalsIgnoreCase("hh:mm:ss,ms")){
+		if ("hh:mm:ss,ms".equalsIgnoreCase(format)){
 			// this type of format:  01:02:22,501 (used in .SRT)
 			int h, m, s, ms;
 			h = Integer.parseInt(value.substring(0, 2));
@@ -19,7 +19,7 @@ public class Time {
 			
 			mseconds = ms + s*1000 + m*60000 + h*3600000;
 			
-		} else if (format.equalsIgnoreCase("h:mm:ss.cs")){
+		} else if ("h:mm:ss.cs".equalsIgnoreCase(format)){
 			// this type of format:  1:02:22.51 (used in .ASS/.SSA) 
 			int h =0, m = 0, s = 0, cs = 0;
 			String[] hms = value.split(":");
@@ -44,7 +44,7 @@ public class Time {
 			}
 
 			mseconds = cs*10 + s*1000 + m*60000 + h*3600000;
-		} else if (format.equalsIgnoreCase("h:m:s:f/fps")){
+		} else if ("h:m:s:f/fps".equalsIgnoreCase(format)){
 			int h, m, s, f;
 			float fps;
 			String[] args = value.split("/");
@@ -81,7 +81,7 @@ public class Time {
 		//we use string builder for efficiency
 		StringBuilder time = new StringBuilder();
 		String aux;
-		if(format.equalsIgnoreCase("hh:mm:ss,ms")){
+		if("hh:mm:ss,ms".equalsIgnoreCase(format)){
 			// this type of format:  01:02:22,501 (used in .SRT)
 			long h, m, s, ms;
 			h =  mseconds/3600000;
@@ -105,7 +105,7 @@ public class Time {
 			else if (aux.length()==2) time.append('0');
 			time.append(aux);
 			
-		} else if(format.equalsIgnoreCase("h:mm:ss.cs")){
+		} else if("h:mm:ss.cs".equalsIgnoreCase(format)){
 			// this type of format:  1:02:22.51 (used in .ASS/.SSA)
 			long h, m, s, cs;
 			h =  mseconds/3600000;

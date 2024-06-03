@@ -56,47 +56,47 @@ public class Style {
 	 */
 	public static String getRGBValue(String format, String value){
 		String color = null;
-		if (format.equalsIgnoreCase("name")){
+		if ("name".equalsIgnoreCase(format)){
 			//standard color format from W3C
-			if (value.equals("transparent"))
+			if ("transparent".equals(value))
 				color = "00000000";
-			else if (value.equals("black"))
+			else if ("black".equals(value))
 				color = "000000ff";
-			else if (value.equals("silver"))
+			else if ("silver".equals(value))
 				color = "c0c0c0ff";
-			else if (value.equals("gray"))
+			else if ("gray".equals(value))
 				color = "808080ff";
-			else if (value.equals("white"))
+			else if ("white".equals(value))
 				color = "ffffffff";
-			else if (value.equals("maroon"))
+			else if ("maroon".equals(value))
 				color = "800000ff";
-			else if (value.equals("red"))
+			else if ("red".equals(value))
 				color = "ff0000ff";
-			else if (value.equals("purple"))
+			else if ("purple".equals(value))
 				color = "800080ff";
-			else if (value.equals("fuchsia"))
+			else if ("fuchsia".equals(value))
 				color = "ff00ffff";
-			else if (value.equals("magenta"))
+			else if ("magenta".equals(value))
 				color = "ff00ffff ";
-			else if (value.equals("green"))
+			else if ("green".equals(value))
 				color = "008000ff";
-			else if (value.equals("lime"))
+			else if ("lime".equals(value))
 				color = "00ff00ff";
-			else if (value.equals("olive"))
+			else if ("olive".equals(value))
 				color = "808000ff";
-			else if (value.equals("yellow"))
+			else if ("yellow".equals(value))
 				color = "ffff00ff";
-			else if (value.equals("navy"))
+			else if ("navy".equals(value))
 				color = "000080ff";
-			else if (value.equals("blue"))
+			else if ("blue".equals(value))
 				color = "0000ffff";
-			else if (value.equals("teal"))
+			else if ("teal".equals(value))
 				color = "008080ff";
-			else if (value.equals("aqua"))
+			else if ("aqua".equals(value))
 				color = "00ffffff";
-			else if (value.equals("cyan"))
+			else if ("cyan".equals(value))
 				color = "00ffffff ";
-		} else if (format.equalsIgnoreCase("&HBBGGRR")){
+		} else if ("&HBBGGRR".equalsIgnoreCase(format)){
 			//hex format from SSA
 			if (value.length() == 3){
 				color = value.substring(3) +
@@ -109,7 +109,7 @@ public class Style {
 						value.substring(2, 3) +
 						"ff";
 			}
-		} else if (format.equalsIgnoreCase("&HAABBGGRR") && value.length() > 8){
+		} else if ("&HAABBGGRR".equalsIgnoreCase(format) && value.length() > 8){
 			//hex format from ASS
 			StringBuilder sb = new StringBuilder();
 			sb.append(value.substring(8));
@@ -117,14 +117,14 @@ public class Style {
 			sb.append(value, 4, 5);
 			sb.append(value, 2, 3);
 			color = sb.toString();
-		} else if (format.equalsIgnoreCase("decimalCodedBBGGRR")){
+		} else if ("decimalCodedBBGGRR".equalsIgnoreCase(format)){
 			//normal format from SSA
 			color = Integer.toHexString(Integer.parseInt(value));
 			//any missing 0s are filled in
 			while(color.length()<6)color="0"+color;
 			//order is reversed
 			color = color.substring(4)+color.substring(2,4)+color.substring(0,2)+"ff";
-		}  else if (format.equalsIgnoreCase("decimalCodedAABBGGRR")){
+		}  else if ("decimalCodedAABBGGRR".equalsIgnoreCase(format)){
 			//normal format from ASS
 			color = Long.toHexString(Long.parseLong(value));
 			//any missing 0s are filled in
